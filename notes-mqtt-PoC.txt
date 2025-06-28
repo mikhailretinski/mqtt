@@ -1,0 +1,27 @@
+	External IP VM GCP:
+34.175.70.12
+
+	External IP AWS VM:
+16.171.39.217
+
+mosquitto_pub -h 34.175.70.12 -t test -m "Hola desde AWS"
+
+---
+
+✅ 3. Probar conectividad desde GCP (opcional)
+	Desde la misma VM:
+mosquitto_sub -t test -v
+	Y en otro terminal:
+mosquitto_pub -t test -m "hola mundo"
+Deberías ver el mensaje recibido.
+
+---
+
+		Pruebas:
+
+	GCP (escucha):
+sudo systemctl restart mosquitto
+mretinski@mqtt-20250628:~$ mosquitto_sub -h localhost -t "#" -v
+
+	AWS:
+python3 mqtt-generator.py
